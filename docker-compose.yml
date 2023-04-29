@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+
+  ecommerce_database:
+    container_name: ecommerce_database
+    image: postgres
+    # environment:
+    #   POSTGRES_PASSWORD: mysecretpassword
+    ports:
+      - ${DATABASE_EXPOSE_PORT}:${DATABASE_CONTAINER_PORT}
+    env_file: "./.env"
+
+    volumes:
+      - /postgres/data
+  
+    networks:
+      - devstart_network
+
+
+networks:
+  devstart_network:
+    driver: bridge
