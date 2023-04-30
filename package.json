@@ -1,8 +1,23 @@
 {
-  "devDependencies": {
-    "prisma": "^4.13.0"
+  "name": "projeto_ecommerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "@prisma/client": "^4.13.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Madson05/ecommerce_devstart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Madson05/ecommerce_devstart/issues"
+  },
+  "homepage": "https://github.com/Madson05/ecommerce_devstart#readme",
+  "devDependencies": {
+    "typescript": "^5.0.4"
   }
 }
