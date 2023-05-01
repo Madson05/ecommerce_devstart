@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx src/server.ts",
+    "start:dev": "tsx watch src/server.ts",
+    "build": "tsup src"
   },
   "repository": {
     "type": "git",
@@ -21,10 +23,12 @@
     "@types/node": "^18.16.3",
     "prisma": "^4.13.0",
     "ts-node": "^10.9.1",
+    "tsup": "^6.7.0",
     "tsx": "^3.12.7",
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@prisma/client": "^4.13.0"
+    "@prisma/client": "^4.13.0",
+    "express": "^4.18.2"
   }
 }
