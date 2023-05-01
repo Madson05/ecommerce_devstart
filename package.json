@@ -21,6 +21,10 @@
     "@types/node": "^18.16.3",
     "prisma": "^4.13.0",
     "ts-node": "^10.9.1",
+    "tsx": "^3.12.7",
     "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.13.0"
   }
 }
