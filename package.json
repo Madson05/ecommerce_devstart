@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Madson05/ecommerce_devstart#readme",
   "devDependencies": {
     "@types/node": "^18.16.3",
+    "prisma": "^4.13.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   }
