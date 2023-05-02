@@ -8,8 +8,12 @@ class productController{
 
     const product = {title, description, price}
 
-    res.send( await productService.createproduct(title, description, price))
+    res.json( await productService.createproduct(title, description, price))
   } 
+
+  static async getProducts(req: Request, res: Response){
+    res.json(await productService.getProducts());
+  }
 }
 
 export default productController

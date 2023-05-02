@@ -4,6 +4,10 @@ class productService{
   static async createproduct(title: string, description: string, price: number){
     return await (productRepository.createProduct(title, description, price))
   }
+
+  static async getProducts(){
+    return await productRepository.getProducts()
+  }
 }
 
 export default productService

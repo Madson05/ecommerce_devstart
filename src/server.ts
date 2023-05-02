@@ -12,8 +12,8 @@ const app = express();
 app.use(express.json())
 app.use("/products", productRouter)
 
-app.listen(3033, () => {
-  console.log(`API STARTED ON PORT ${3033}`)
+app.listen(port, () => {
+  console.log(`API STARTED ON PORT ${port}`)
 })
 
 
