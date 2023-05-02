@@ -35,6 +35,12 @@ class productRepository {
 
     return productUpdated;
   }
+
+  static async deleteProduct(productId: string) {
+    const productDeleted = await prismaClient.product.delete({
+      where: { id: productId },
+    });
+  }
 }
 
 export default productRepository;

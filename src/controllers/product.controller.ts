@@ -8,7 +8,7 @@ class productController {
   }
 
   static async getProduct(req: Request, res: Response) {
-    const productId = req.params.productId;
+    const {productId} = req.params;
     res.json(await productService.getProduct(productId));
   }
 
@@ -25,6 +25,11 @@ class productController {
     const product: IProduct = {title, description, price}
 
     res.json(await productService.updateProduct(id, product));
+  }
+
+  static async deleteProduct(req: Request, res: Response){
+    const { productId } = req.params;
+    res.json(await productService.deleteProduct(productId));
   }
 }
 

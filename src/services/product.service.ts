@@ -17,6 +17,9 @@ class productService {
   static async updateProduct(id: string, product: IProduct) {
     return await productRepository.updateProduct(id, product);
   }
+  static async deleteProduct(productId: string){
+    return await productRepository.deleteProduct(productId);
+  }
 }
 
 export default productService;
