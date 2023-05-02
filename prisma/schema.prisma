@@ -20,6 +20,8 @@ model Customer {
   products  String[]
 
   Shopping Shopping[]
+
+  @@map("customers")
 }
 
 model Product {
@@ -30,6 +32,8 @@ model Product {
   description String?
   price       Decimal
   Shopping    Shopping[]
+
+  @@map("products")
 }
 
 model Shopping {
@@ -43,4 +47,6 @@ model Shopping {
 
   Customer    Customer @relation(fields: [customer_id], references: [id])
   customer_id String
+
+  @@map("shoppings")
 }
