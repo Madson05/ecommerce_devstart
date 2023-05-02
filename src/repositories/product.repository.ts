@@ -1,48 +1,40 @@
+import { IProduct } from "../@types/ProductType";
 import prismaClient from "../database/prismaClient";
 
-class productRepository{
-
-  static async getProducts(){
-    const products = await prismaClient.product.findMany()
+class productRepository {
+  static async getProducts() {
+    const products = await prismaClient.product.findMany();
     return products;
   }
 
-  static async getProduct(userId: string){
+  static async getProduct(userId: string) {
     const product = await prismaClient.product.findUnique({
       where: {
         id: userId,
-      }
-      })
+      },
+    });
     return product;
   }
 
-  static async createProduct(title: string, description: string, price: number){
-    const products = await prismaClient.product.create({
+  static async createProduct(product: IProduct) {
+    const productCreated = await prismaClient.product.create({
       data: {
-        title, 
-        description,
-        price
-      }
-    })
-    return products
+        ...product,
+      },
+    });
+    return productCreated;
   }
 
-  static async updateProduct(productId: string, title: string, description: string, price: number){
-    const product = await prismaClient.product.update({
-      where: {id: productId},
+  static async updateProduct(productId: string, product: IProduct) {
+    const productUpdated = await prismaClient.product.update({
+      where: { id: productId },
       data: {
-        title: title, 
-        description: description,
-        price: price
-      }
-    })
+        ...product,
+      },
+    });
 
-    return product;
+    return productUpdated;
   }
-
-  
-
-  
 }
 
-export default productRepository
+export default productRepository;

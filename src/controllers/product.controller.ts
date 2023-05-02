@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import productService from "../services/product.service";
+import {IProduct} from "../@types/ProductType"
 
 class productController {
   static async getProducts(req: Request, res: Response) {
@@ -14,12 +15,16 @@ class productController {
   static async createProduct(req: Request, res: Response) {
     const { title, description, price } = req.body;
 
-    res.json(await productService.createproduct(title, description, price));
+    const product: IProduct = {title, description, price}
+
+    res.json(await productService.createproduct(product));
   }
 
   static async updateProduct(req: Request, res: Response){
     const { id, title, description, price } = req.body;
-    res.json(await productService.updateProduct(id, title, description, price));
+    const product: IProduct = {title, description, price}
+
+    res.json(await productService.updateProduct(id, product));
   }
 }
 

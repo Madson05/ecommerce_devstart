@@ -1,22 +1,22 @@
-import productRepository from "../repositories/product.repository"
+import { IProduct } from "../@types/ProductType";
+import productRepository from "../repositories/product.repository";
 
-class productService{
-  static async getProducts(){
-    return await productRepository.getProducts()
+class productService {
+  static async getProducts() {
+    return await productRepository.getProducts();
   }
 
-  static async getProduct(userId: string){
-    return await productRepository.getProduct(userId)
-  }
-  
-  static async createproduct(title: string, description: string, price: number){
-    return await (productRepository.createProduct(title, description, price))
+  static async getProduct(userId: string) {
+    return await productRepository.getProduct(userId);
   }
 
-  static async updateProduct(productId: string, title: string, description: string, price: number){
-    return await (productRepository.updateProduct(productId, title, description, price))
+  static async createproduct(product: IProduct) {
+    return await productRepository.createProduct(product);
   }
 
+  static async updateProduct(id: string, product: IProduct) {
+    return await productRepository.updateProduct(id, product);
+  }
 }
 
-export default productService
+export default productService;
