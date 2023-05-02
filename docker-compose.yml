@@ -5,8 +5,6 @@ services:
   ecommerce_database:
     container_name: ecommerce_database
     image: postgres
-    # environment:
-    #   POSTGRES_PASSWORD: mysecretpassword
     ports:
       - ${DATABASE_EXPOSE_PORT}:${DATABASE_CONTAINER_PORT}
     env_file: "./.env"
