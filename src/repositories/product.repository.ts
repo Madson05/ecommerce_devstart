@@ -7,16 +7,30 @@ class productRepository{
     return products;
   }
 
+  static async getProduct(userId: string){
+    console.log(userId)
+    const product = await prismaClient.product.findUnique({
+      where: {
+        id: userId,
+      }
+      })
+    return product;
+  }
+
   static async createProduct(title: string, description: string, price: number){
-    const product = await prismaClient.product.create({
+    const products = await prismaClient.product.create({
       data: {
         title, 
         description,
         price
       }
     })
-    return product
+    return products
   }
+
+  
+
+  
 
   
 }
