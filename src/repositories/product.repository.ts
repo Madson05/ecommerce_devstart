@@ -8,7 +8,6 @@ class productRepository{
   }
 
   static async getProduct(userId: string){
-    console.log(userId)
     const product = await prismaClient.product.findUnique({
       where: {
         id: userId,
@@ -28,7 +27,18 @@ class productRepository{
     return products
   }
 
-  
+  static async updateProduct(productId: string, title: string, description: string, price: number){
+    const product = await prismaClient.product.update({
+      where: {id: productId},
+      data: {
+        title: title, 
+        description: description,
+        price: price
+      }
+    })
+
+    return product;
+  }
 
   
 
