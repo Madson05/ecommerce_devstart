@@ -1,9 +1,11 @@
 import { Request, Response } from "express";
 import customerService from "../services/customer.service";
 import { ICustomer } from "../@types/CustomerType";
-import dotenv from "dotenv";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { ICustomRequest } from "../@types/CustomRequest";
+
+
 
 class customerController {
   static async getCustomers(req: Request, res: Response) {
@@ -11,6 +13,7 @@ class customerController {
   }
 
   static async getCustomer(req: Request, res: Response) {
+
     const { customerId } = req.params;
     res.json(await customerService.getCustomer(customerId));
   }
@@ -48,11 +51,15 @@ class customerController {
     })
   }
 
-  static async updateCustomer(req: Request, res: Response) {
-    const { id, name, email, password } = req.body;
+  static async updateCustomer(req:ICustomRequest, res: Response) {
+
+    const id = req.id
+    const { name, email, password } = req.body;
     const customer: ICustomer = { name, email, password };
 
-    res.json(await customerService.updateCustomer(id, customer));
+    console.log(id)
+
+    // res.json(await customerService.updateCustomer(id, customer));
   }
 
   static async deleteCustomer(req: Request, res: Response) {
