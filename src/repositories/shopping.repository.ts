@@ -2,8 +2,12 @@ import { IShopping } from "../@types/ShoppingType";
 import prismaClient from "../database/prismaClient";
 
 class shoppingRepository {
-  static async getShoppings() {
-    const shoppings = await prismaClient.shopping.findMany();
+  static async getShoppings(customerId: string) {
+    const shoppings = await prismaClient.shopping.findMany({
+      where: {
+        customer_id: customerId
+      }
+    });
     return shoppings;
   }
 

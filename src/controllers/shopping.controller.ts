@@ -4,7 +4,8 @@ import {IShopping} from "../@types/ShoppingType"
 
 class shoppingController {
   static async getShoppings(req: Request, res: Response) {
-    res.json(await shoppingService.getShoppings());
+    const customerId = req.customerId
+    res.json(await shoppingService.getShoppings(customerId));
   }
 
   static async getShopping(req: Request, res: Response) {
