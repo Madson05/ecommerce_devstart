@@ -40,7 +40,12 @@ class customerController {
       expiresIn: "1h",
     });
 
-    console.log(token)
+    const {password: _, ...customerLogin} = customer
+
+    res.json({
+      user: customerLogin,
+      token,
+    })
   }
 
   static async updateCustomer(req: Request, res: Response) {
