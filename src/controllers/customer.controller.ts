@@ -3,7 +3,6 @@ import customerService from "../services/customer.service";
 import { ICustomer } from "../@types/CustomerType";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { ICustomRequest } from "../@types/CustomRequest";
 
 
 
@@ -14,7 +13,7 @@ class customerController {
 
   static async getCustomer(req: Request, res: Response) {
 
-    const { customerId } = req.params;
+    const  customerId  = req.customerId;
     res.json(await customerService.getCustomer(customerId));
   }
 
@@ -39,6 +38,7 @@ class customerController {
     if (!verifyPass) {
       throw new Error("Email ou senha inválidos");
     }
+
     const token = jwt.sign({ id: customer.id }, process.env.TOKEN_SECRET || "", {
       expiresIn: "1h",
     });
@@ -51,19 +51,17 @@ class customerController {
     })
   }
 
-  static async updateCustomer(req:ICustomRequest, res: Response) {
+  static async updateCustomer(req:Request, res: Response) {
 
-    const id = req.id
+    const id = req.customerId
     const { name, email, password } = req.body;
     const customer: ICustomer = { name, email, password };
 
-    console.log(id)
-
-    // res.json(await customerService.updateCustomer(id, customer));
+    res.json(await customerService.updateCustomer(id, customer));
   }
 
   static async deleteCustomer(req: Request, res: Response) {
-    const { customerId } = req.params;
+    const customerId  = req.customerId;
     res.json(await customerService.deleteCustomer(customerId));
   }
 }

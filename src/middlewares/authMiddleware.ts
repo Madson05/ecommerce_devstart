@@ -25,7 +25,7 @@ export const authMiddleware = async (
     process.env.TOKEN_SECRET || ""
   ) as jwtPayload;
 
-  req.id = id;
+  req.customerId = id;
 
   next();
 };
