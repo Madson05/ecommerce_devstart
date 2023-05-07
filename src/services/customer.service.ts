@@ -10,8 +10,10 @@ class customerService {
     return await customerRepository.getCustomer(userId);
   }
 
-  static async createcustomer(customer: ICustomer) {
-    return await customerRepository.createCustomer(customer);
+  static async createcustomer(customer: ICustomer, email: string) {
+    if(!await customerRepository.getCustomerByQuery(email)){
+      return await customerRepository.createCustomer(customer);
+    }
   }
 
   static async updateCustomer(id: string, customer: ICustomer) {

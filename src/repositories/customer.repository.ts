@@ -7,6 +7,15 @@ class customerRepository {
     return customers;
   }
 
+  static async getCustomerByQuery(name: string) {
+    const customer = await prismaClient.customer.findFirst({
+      where: {
+        name: name,
+      },
+    });
+    return customer;
+  }
+
   static async getCustomer(userId: string) {
     const customer = await prismaClient.customer.findUnique({
       where: {
@@ -22,7 +31,9 @@ class customerRepository {
         ...customer,
       },
     });
-    return customerCreated;
+
+    const {password, ...customerWithOutPassword} = customerCreated
+    return customerWithOutPassword;
   }
 
   static async updateCustomer(customerId: string, customer: ICustomer) {
