@@ -5,13 +5,18 @@ class customerService {
   static async getCustomers() {
     return await customerRepository.getCustomers();
   }
+  
+  static async getCustomerByEmail(email: string) {
+    const customer = await customerRepository.getCustomerByEmail(email);
+    return customer;
+  }
 
   static async getCustomer(userId: string) {
     return await customerRepository.getCustomer(userId);
   }
 
   static async createcustomer(customer: ICustomer, email: string) {
-    if(!await customerRepository.getCustomerByQuery(email)){
+    if(!await customerRepository.getCustomerByEmail(email)){
       return await customerRepository.createCustomer(customer);
     }
   }

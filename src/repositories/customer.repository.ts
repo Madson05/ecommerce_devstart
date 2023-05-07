@@ -7,10 +7,10 @@ class customerRepository {
     return customers;
   }
 
-  static async getCustomerByQuery(name: string) {
+  static async getCustomerByEmail(email: string) {
     const customer = await prismaClient.customer.findFirst({
       where: {
-        name: name,
+        email,
       },
     });
     return customer;
