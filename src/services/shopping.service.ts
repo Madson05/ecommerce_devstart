@@ -7,7 +7,14 @@ class shoppingService {
   }
 
   static async getShopping(shoppingId: string, customerId: string) {
-    return await shoppingRepository.getShopping(shoppingId);
+    const shopping = await shoppingRepository.getShopping(shoppingId);
+    if(!shopping){
+      throw new Error("Shopping not found")
+    }
+    if(shopping.customer_id !== customerId){
+      throw new Error("You can't get a shopping that is not yours")
+    }
+    return shopping;
   }
 
   static async createshopping(shopping: IShopping) {

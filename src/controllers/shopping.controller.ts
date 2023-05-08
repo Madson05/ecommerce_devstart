@@ -19,7 +19,6 @@ class shoppingController {
     const customer_id = req.customerId;
     customer_id
     const shopping: IShopping = {amount, address, payed_at, product_id, customer_id}
-
     res.json(await shoppingService.createshopping(shopping));
   }
 
