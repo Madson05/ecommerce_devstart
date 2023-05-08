@@ -46,6 +46,7 @@ class shoppingRepository {
         id: shoppingId,
       },
     });
+    return shoppingDeleted;
   }
 }
 
