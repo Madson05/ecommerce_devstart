@@ -16,9 +16,10 @@ class customerService {
   }
 
   static async createcustomer(customer: ICustomer, email: string) {
-    if(!await customerRepository.getCustomerByEmail(email)){
-      return await customerRepository.createCustomer(customer);
+    if(await customerRepository.getCustomerByEmail(email)){
+      throw new Error("Email já cadastrado")
     }
+    return await customerRepository.createCustomer(customer);
   }
 
   static async updateCustomer(id: string, customer: ICustomer) {
