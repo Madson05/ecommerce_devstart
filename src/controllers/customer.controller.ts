@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import customerService from "../services/customer.service";
 import { ICustomer } from "../@types/CustomerType";
 import bcrypt from "bcrypt";
@@ -7,14 +7,22 @@ import jwt from "jsonwebtoken";
 
 
 class customerController {
-  static async getCustomers(req: Request, res: Response) {
-    res.json(await customerService.getCustomers());
+  static async getCustomers(req: Request, res: Response, next: NextFunction) {
+    try{
+      res.json(await customerService.getCustomers());
+    } catch (error) {
+      next(error)
+    }
   }
 
-  static async getCustomer(req: Request, res: Response) {
+  static async getCustomer(req: Request, res: Response, next: NextFunction) {
 
-    const  customerId  = req.customerId;
-    res.json(await customerService.getCustomer(customerId));
+    try{
+      const  customerId  = req.customerId;
+      res.json(await customerService.getCustomer(customerId));
+    } catch (error) {
+      next(error);
+    }
   }
 
   static async createCustomer(req: Request, res: Response) {

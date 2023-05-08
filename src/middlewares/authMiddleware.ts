@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from "express";
 
 import jwt from "jsonwebtoken";
 
-
 type jwtPayload = {
   id: string;
 };
@@ -12,20 +11,24 @@ export const authMiddleware = async (
   res: Response,
   next: NextFunction
 ) => {
-  const {authorization}  = req.headers;
+  try {
+    const { authorization } = req.headers;
 
-  if (!authorization) {
-    throw new Error("Não autorizado");
+    if (!authorization) {
+      throw new Error("Não autorizado");
+    }
+
+    const token = authorization.split(" ")[1];
+
+    const { id } = jwt.verify(
+      token,
+      process.env.TOKEN_SECRET || ""
+    ) as jwtPayload;
+
+    req.customerId = id;
+
+    next();
+  } catch (error) {
+    next(error);
   }
-
-  const token = authorization.split(" ")[1];
-
-  const { id } = jwt.verify(
-    token,
-    process.env.TOKEN_SECRET || ""
-  ) as jwtPayload;
-
-  req.customerId = id;
-
-  next();
 };
