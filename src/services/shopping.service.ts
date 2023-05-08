@@ -15,8 +15,19 @@ class shoppingService {
   }
 
   static async updateShopping(id: string, shopping: IShopping) {
+    const {customer_id} = shopping;
+
+    const shoppingFound = await shoppingRepository.getShopping(id);
+    if(!shoppingFound){
+      throw new Error("Shopping not found")
+    }
+    if(shoppingFound.customer_id !== customer_id){
+      throw new Error("You can't update a shopping that is not yours")
+    }
     return await shoppingRepository.updateShopping(id, shopping);
   }
+
+
   static async deleteShopping(shoppingId: string, customer_id: string){
     const shopping = await shoppingRepository.getShopping(shoppingId)
     if(!shopping){
