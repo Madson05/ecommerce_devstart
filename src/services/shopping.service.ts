@@ -6,8 +6,8 @@ class shoppingService {
     return await shoppingRepository.getShoppings(customerId);
   }
 
-  static async getShopping(userId: string) {
-    return await shoppingRepository.getShopping(userId);
+  static async getShopping(shoppingId: string, customerId: string) {
+    return await shoppingRepository.getShopping(shoppingId);
   }
 
   static async createshopping(shopping: IShopping) {
@@ -17,7 +17,15 @@ class shoppingService {
   static async updateShopping(id: string, shopping: IShopping) {
     return await shoppingRepository.updateShopping(id, shopping);
   }
-  static async deleteShopping(shoppingId: string){
+  static async deleteShopping(shoppingId: string, customer_id: string){
+    const shopping = await shoppingRepository.getShopping(shoppingId)
+    if(!shopping){
+      throw new Error("Shopping not found")
+    }
+    if(shopping.customer_id !== customer_id){
+      throw new Error("You can't delete a shopping that is not yours")
+    }
+
     return await shoppingRepository.deleteShopping(shoppingId);
   }
 }

@@ -11,10 +11,10 @@ class shoppingRepository {
     return shoppings;
   }
 
-  static async getShopping(userId: string) {
-    const shopping = await prismaClient.shopping.findUnique({
+  static async getShopping(shoppingId: string) {
+    const shopping = await prismaClient.shopping.findFirst({
       where: {
-        id: userId,
+        id: shoppingId,
       },
     });
     return shopping;
@@ -31,7 +31,7 @@ class shoppingRepository {
 
   static async updateShopping(shoppingId: string, shopping: IShopping) {
     const shoppingUpdated = await prismaClient.shopping.update({
-      where: { id: shoppingId },
+      where: { id: shoppingId},
       data: {
         ...shopping,
       },
@@ -42,7 +42,9 @@ class shoppingRepository {
 
   static async deleteShopping(shoppingId: string) {
     const shoppingDeleted = await prismaClient.shopping.delete({
-      where: { id: shoppingId },
+      where: { 
+        id: shoppingId,
+      },
     });
   }
 }

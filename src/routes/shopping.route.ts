@@ -5,7 +5,7 @@ import { authMiddleware } from "../middlewares/authMiddleware";
 const router = express.Router()
 
 
-router.get("/", shoppingController.getShoppings)
+router.get("/", authMiddleware, shoppingController.getShoppings)
 router.get("/:shoppingId",authMiddleware, shoppingController.getShopping)
 router.post("/",authMiddleware, shoppingController.createShopping)
 router.put("/update",authMiddleware, shoppingController.updateShopping)
