@@ -18,6 +18,7 @@ model Customer {
   email     String   @unique
   password  String
   products  String[]
+  canSell   Boolean @default(false)
 
   Shopping Shopping[]
 

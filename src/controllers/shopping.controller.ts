@@ -65,7 +65,7 @@ class shoppingController {
     } catch (error) {
       next(error);
     }
-  }
+  }        
 }
 
 export default shoppingController;
