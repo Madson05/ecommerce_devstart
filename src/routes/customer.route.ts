@@ -5,7 +5,6 @@ import { authMiddleware } from "../middlewares/authMiddleware";
 const router = express.Router()
 
 
-// router.get("/", customerController.getCustomers)
 router.get("/:customerId",authMiddleware, customerController.getCustomer)
 router.post("/", customerController.createCustomer)
 router.post("/login", customerController.login)
