@@ -3,6 +3,7 @@ import customerService from "../services/customer.service";
 import { ICustomer } from "../@types/CustomerType";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { customerSchema } from "../validations/customerSchema";
 
 class customerController {
   static async getCustomers(req: Request, res: Response, next: NextFunction) {
@@ -24,11 +25,11 @@ class customerController {
 
   static async createCustomer(req: Request, res: Response, next: NextFunction) {
     try {
-      const { name, email, password } = req.body;
-      const hashPassword = await bcrypt.hash(password, 10);
-      const customer: ICustomer = { name, email, password: hashPassword };
+      const customer = customerSchema.parse(req.body)
 
-      res.json(await customerService.createcustomer(customer, email));
+      customer.password = await bcrypt.hash(customer.password, 10);
+
+      res.json(await customerService.createcustomer(customer, customer.email));
     } catch (error) {
       next(error);
     }
