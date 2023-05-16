@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import productService from "../services/product.service";
 import { IProduct } from "../@types/ProductType";
+import { productSchema } from "../validations/productSchema";
 
 class productController {
   static async getProducts(req: Request, res: Response, next: NextFunction) {
@@ -22,9 +23,7 @@ class productController {
 
   static async createProduct(req: Request, res: Response, next: NextFunction) {
     try {
-      const { title, description, price } = req.body;
-
-      const product: IProduct = { title, description, price };
+      const product = productSchema.parse(req.body);
 
       res.json(await productService.createproduct(product));
     } catch (error) {
