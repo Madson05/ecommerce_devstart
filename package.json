@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "vitest",
     "dev": "tsx src/server.ts",
     "start:dev": "tsx watch src/server.ts",
     "build": "tsup src"
@@ -37,6 +38,7 @@
   "dependencies": {
     "@prisma/client": "^4.13.0",
     "@types/uuid": "^9.0.1",
+    "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "jsonwebtoken": "^9.0.0"
   },
