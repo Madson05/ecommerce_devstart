@@ -16,7 +16,7 @@ class customerController {
 
   static async getCustomer(req: Request, res: Response, next: NextFunction) {
     try {
-      const customerId = req.customerId;
+      const customerId = req.params.customerId;
       res.json(await customerService.getCustomer(customerId));
     } catch (error) {
       next(error);
@@ -63,9 +63,12 @@ class customerController {
         user: customerLogin,
         token,
       });
+
     } catch (error) {
       next(error);
     }
+
+
   }
 
   static async updateCustomer(req: Request, res: Response, next: NextFunction) {

@@ -10,7 +10,7 @@ test("GET de dados do usuário autenticado", async () => {
   };
 
   const responseLogin = await request(app).post("/customers/login").send(payload);
-  const id = responseLogin.body.id; 
+  const id = responseLogin.body.user.id; 
   const token = responseLogin.body.token;
   const response = await request(app)
     .get(`/customers/${id}`)
@@ -44,7 +44,7 @@ test("GET de dados do usuário autenticado com id inválido", async () => {
   const response = await request(app)
     .get(`/customers/123`)
     .set("Authorization", `Bearer ${token}`);
-  expect(response.status).toBe(200);
+  expect(response.status).toBe(400);
   expect(response.body).toHaveProperty("error");
   expect(response.body.error).toBe("Não autorizado");
 });
