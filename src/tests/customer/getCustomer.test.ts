@@ -65,3 +65,18 @@ test("GET de dados do usuário autenticado com token inválido", async () => {
   expect(response.body).toHaveProperty("error");
   expect(response.body.error).toBe("jwt malformed");
 });
+
+test("GET de dados do usuário autenticado com token vazio", async () => {
+  const payload = {
+    email: "exemplo@gmail.com",
+    password: "thissenhaissenha",
+  };
+  const responseLogin = await request(app).post("/customers/login").send(payload);
+  const id = responseLogin.body.user.id;
+  const response = await request(app)
+    .get(`/customers/${id}`)
+    .set("Authorization", `Bearer `);
+  expect(response.status).toBe(400);
+  expect(response.body).toHaveProperty("error");
+  expect(response.body.error).toBe("jwt must be provided");
+});
