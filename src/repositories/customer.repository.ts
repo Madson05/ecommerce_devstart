@@ -1,5 +1,6 @@
 import { ICustomer } from "../@types/CustomerType";
 import prismaClient from "../database/prismaClient";
+import { customerSchema } from "../validations/customerSchema";
 
 class customerRepository {
   static async getCustomers() {
@@ -22,7 +23,13 @@ class customerRepository {
         id: userId,
       },
     });
+    if(customer){
+      const { password, ...customerWithoutPassword } = customer;
+      return customerWithoutPassword;
+
+    }
     return customer;
+    
   }
 
   static async createCustomer(customer: ICustomer) {
@@ -46,9 +53,6 @@ class customerRepository {
   }
 
   static async deleteCustomer(customerId: string) {
-    const customerDeleted = await prismaClient.customer.delete({
-      where: { id: customerId },
-    });
   }
 }
 
