@@ -31,9 +31,7 @@ class customerRepository {
         ...customer,
       },
     });
-
-    const {password, ...customerWithOutPassword} = customerCreated
-    return customerWithOutPassword;
+    return customerCreated;
   }
 
   static async updateCustomer(customerId: string, customer: ICustomer) {

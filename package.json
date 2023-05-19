@@ -6,7 +6,6 @@
   "scripts": {
     "test": "vitest",
     "dev": "tsx --watch src/server.ts",
-    
     "build": "tsup src"
   },
   "repository": {
@@ -26,9 +25,11 @@
     "@types/express": "^4.17.17",
     "@types/jsonwebtoken": "^9.0.2",
     "@types/node": "^18.16.3",
+    "@types/supertest": "^2.0.12",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "prisma": "^4.13.0",
+    "supertest": "^6.3.3",
     "ts-node": "^10.9.1",
     "tsup": "^6.7.0",
     "tsx": "^3.12.7",

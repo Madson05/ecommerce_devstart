@@ -24,4 +24,6 @@ app.listen(port, () => {
   console.log(`API STARTED ON PORT ${port}`)
 })
 
+export default app
+
 
