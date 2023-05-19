@@ -26,8 +26,9 @@ class customerRepository {
     if(customer){
       const { password, ...customerWithoutPassword } = customer;
       return customerWithoutPassword;
-
     }
+
+    return customer;
   }
 
   static async createCustomer(customer: ICustomer) {

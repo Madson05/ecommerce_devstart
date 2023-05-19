@@ -34,6 +34,8 @@ test("GET de dados do usuário não autenticado", async () => {
   expect(responseGet.body).toHaveProperty("error");
   expect(responseGet.body.error).toBe("Não autorizado");
 });
+
+
 test("GET de dados do usuário autenticado com id inválido", async () => {
   const payload = {
     email: "exemplo@gmail.com",
@@ -47,4 +49,19 @@ test("GET de dados do usuário autenticado com id inválido", async () => {
   expect(response.status).toBe(400);
   expect(response.body).toHaveProperty("error");
   expect(response.body.error).toBe("Não autorizado");
+});
+
+test("GET de dados do usuário autenticado com token inválido", async () => {
+  const payload = {
+    email: "exemplo@gmail.com",
+    password: "thissenhaissenha",
+  };
+  const responseLogin = await request(app).post("/customers/login").send(payload);
+  const id = responseLogin.body.user.id;
+  const response = await request(app)
+    .get(`/customers/${id}`)
+    .set("Authorization", `Bearer 123`);
+  expect(response.status).toBe(400);
+  expect(response.body).toHaveProperty("error");
+  expect(response.body.error).toBe("jwt malformed");
 });

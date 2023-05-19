@@ -12,7 +12,11 @@ class customerService {
   }
 
   static async getCustomer(userId: string) {
-    return await customerRepository.getCustomer(userId);
+    const customer = await customerRepository.getCustomer(userId);
+    if(!customer){
+      throw new Error("Não autorizado") // se não existe id significa que ele está acessando um id não pertecente a ele próprio. (segurança)
+    }
+    return customer;
   }
 
   static async createcustomer(customer: ICustomer, email: string) {
