@@ -28,8 +28,6 @@ class customerRepository {
       return customerWithoutPassword;
 
     }
-    return customer;
-    
   }
 
   static async createCustomer(customer: ICustomer) {
