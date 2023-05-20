@@ -5,7 +5,7 @@ import app from "../../server"
 
 test("GET de dados do usuário autenticado", async () => {
   const payload = {
-    email: "exemplo@gmail.com",
+    email: "teste@gmail.com",
     password: "thissenhaissenha",
   };
 
@@ -24,7 +24,7 @@ test("GET de dados do usuário autenticado", async () => {
 
 test("GET de dados do usuário não autenticado", async () => {
   const payload = {
-    email: "exemplo@gmail.com",
+    email: "teste@gmail.com",
     password: "thissenhaissenha",
   };
   const response = await request(app).post("/customers/login").send(payload);
@@ -38,7 +38,7 @@ test("GET de dados do usuário não autenticado", async () => {
 
 test("GET de dados do usuário autenticado com id inválido", async () => {
   const payload = {
-    email: "exemplo@gmail.com",
+    email: "teste@gmail.com",
     password: "thissenhaissenha",
   };
   const responseLogin = await request(app).post("/customers/login").send(payload); 
@@ -53,7 +53,7 @@ test("GET de dados do usuário autenticado com id inválido", async () => {
 
 test("GET de dados do usuário autenticado com token inválido", async () => {
   const payload = {
-    email: "exemplo@gmail.com",
+    email: "teste@gmail.com",
     password: "thissenhaissenha",
   };
   const responseLogin = await request(app).post("/customers/login").send(payload);
@@ -68,7 +68,7 @@ test("GET de dados do usuário autenticado com token inválido", async () => {
 
 test("GET de dados do usuário autenticado com token vazio", async () => {
   const payload = {
-    email: "exemplo@gmail.com",
+    email: "teste@gmail.com",
     password: "thissenhaissenha",
   };
   const responseLogin = await request(app).post("/customers/login").send(payload);

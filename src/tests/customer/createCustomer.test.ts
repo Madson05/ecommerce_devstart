@@ -6,7 +6,7 @@ import app from "../../server";
 test("Cadastro de user", async () => {
   const payload = {
     name: "Madson",
-    email: "exemplo@gmail.com",
+    email: "teste@gmail.com",
     password: "thissenhaissenha",
   };
 
@@ -21,7 +21,7 @@ test("Cadastro de user", async () => {
 test("Cadastro de user com email já cadastrado", async () => {
   const payload = {
     name: "Madson",
-    email: `email@gmail.com`,
+    email: `teste@gmail.com`,
     password: "thissenhaissenha",
   };
 
@@ -35,7 +35,7 @@ test("Cadastro de user com email já cadastrado", async () => {
 test("Cadastro de user com email inválido", async () => {
   const payload = {
     name: "Madson",
-    email: `emailgmail.com`,
+    email: `testegmail.com`,
     password: "thissenhaissenha",
   };
 
@@ -49,7 +49,7 @@ test("Cadastro de user com email inválido", async () => {
 test("Cadastro de user com senha inválida", async () => {
   const payload = {
     name: "Madson",
-    email: "email@gmail.com",
+    email: "teste@gmail.com",
     password: "this",
   };
   const response = await request(app).post("/customers").send(payload);
@@ -63,7 +63,7 @@ test("Cadastro de user com senha inválida", async () => {
 test("Cadastro de user com nome inválido", async () => {
   const payload = {
     name: "Ma",
-    email: "exemplo@gmail.com",
+    email: "teste@gmail.com",
     password: "thissenhaissenha"
   };
   const response = await request(app).post("/customers").send(payload);
