@@ -52,11 +52,13 @@ class customerRepository {
   }
 
   static async deleteCustomer(customerId: string) {
-    const customerDeleted = await prismaClient.customer.delete({
+    const customer = await prismaClient.customer.delete({
       where: {
         id: customerId,
       },
     });
+
+    const { password, ...customerDeleted } = customer;
     return customerDeleted;
   }
 }
